@@ -48,12 +48,7 @@ Volume ContentVolume(std::string tankType, double contentLevel_raw, double tankH
 				return (tankVolume);
 			}
 
-			double x = ((tankRadius.value() - tankHeight.value()) / tankRadius.value());
-			double y = acos(x);
-			y = 2 * y;
-			quantity
-				<unit<plane_angle_dimension, degree::system>
-				> sectorAngle((2.0 * acos(x))
+			quantity<plane_angle> sectorAngle(((tankRadius.value() - tankHeight.value()) / tankRadius.value())
 					* radian);
 
 			quantity<area> sectorSquare(
@@ -88,6 +83,8 @@ Volume ContentVolume(std::string tankType, double contentLevel_raw, double tankH
 int main()
 {
 	std::string tankType = "h";
+	quantity<area> example(2.0 * milli * milli * square_meters);
+	std::cout << example << std::endl;
 	ContentVolume("h", 10.00, 10.00, 200.00);
 	return 0;
 }
